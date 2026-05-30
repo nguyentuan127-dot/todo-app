@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List</title>
+  <style>
+    body { font-family: Arial; max-width: 500px; margin: 50px auto; background: #f0f2f5; }
+    h1 { color: #4a90e2; text-align: center; }
+    input { width: 70%; padding: 10px; font-size: 16px; border: 2px solid #4a90e2; border-radius: 8px; }
+    button { padding: 10px 20px; background: #4a90e2; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; }
+    li { background: white; padding: 12px; margin: 8px 0; border-radius: 8px; list-style: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    li span { cursor: pointer; color: red; float: right; }
+  </style>
+</head>
+<body>
+  <h1>📝 To-Do List</h1>
+  <div style="text-align:center; margin-bottom:20px">
+    <input type="text" id="taskInput" placeholder="Nhập công việc..." />
+    <button onclick="addTask()">Thêm</button>
+  </div>
+  <ul id="taskList"></ul>
+
+  <script>
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const li = document.createElement('li');
+      li.innerHTML = `✅ ${text} <span onclick="this.parentElement.remove()">🗑️</span>`;
+      document.getElementById('taskList').appendChild(li);
+      input.value = '';
+    }
+
+    document.getElementById('taskInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') addTask();
+    });
+  </script>
+</body>
+</html>
